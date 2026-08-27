@@ -9,8 +9,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    .nav { mix-blend-mode: normal; background: var(--black); color: var(--white); padding: 12px 40px; }
-    .page-wrapper { padding-top: 130px; padding-bottom: 80px; min-height: 80vh; }
+    /* NAV bersih */
+    .nav {
+      mix-blend-mode: normal !important;
+      background: var(--black);
+      color: var(--white);
+      padding: 12px 40px;
+      text-shadow: none !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    .nav .r-mark,
+    .nav .logo a,
+    .nav .menu-btn {
+      text-shadow: none !important;
+      filter: none !important;
+      mix-blend-mode: normal !important;
+      color: #fff !important;
+    }
+
+    .page-wrapper {
+      padding-top: 130px;
+      padding-bottom: 80px;
+      min-height: 80vh;
+    }
+
+    /* FILTER */
     .filter-bar {
       display: flex;
       flex-wrap: wrap;
@@ -29,6 +54,8 @@
       color: var(--white);
       cursor: pointer;
       transition: all 0.25s ease;
+      text-shadow: none !important;
+      box-shadow: none !important;
     }
     .filter-btn:hover,
     .filter-btn.active {
@@ -36,6 +63,8 @@
       border-color: var(--orange);
       color: var(--black);
     }
+
+    /* GRID */
     .gallery-page-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -46,28 +75,52 @@
       position: relative;
       overflow: hidden;
       border-radius: 12px;
+      cursor: pointer;
+      box-shadow: none !important;
+      filter: none !important;
+      text-shadow: none !important;
     }
     .gallery-page-grid .gallery-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
       transition: transform 0.4s ease;
+      filter: none !important;
     }
     .gallery-page-grid .gallery-card:hover img {
-      transform: scale(1.08);
+      transform: scale(1.06);
     }
-    .gallery-badge {
-      position: absolute;
-      bottom: 12px;
-      left: 12px;
-      background: rgba(0,0,0,0.75);
-      color: white;
-      padding: 6px 14px;
-      border-radius: 30px;
-      font-size: 0.75rem;
-      letter-spacing: 1px;
-      font-weight: 600;
+
+    /* BADGE — hitam transparan, teks putih, TANPA shadow */
+    .gallery-page-grid .gallery-badge {
+      position: absolute !important;
+      bottom: 12px !important;
+      left: 12px !important;
+      top: auto !important;
+      background: rgba(0, 0, 0, 0.75) !important;
+      color: #fff !important;
+      padding: 6px 14px !important;
+      border-radius: 30px !important;
+      font-family: var(--font-body) !important;
+      font-size: 0.75rem !important;
+      letter-spacing: 1px !important;
+      font-weight: 600 !important;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 1 !important;
+      transform: none !important;
+      text-shadow: none !important;
+      box-shadow: none !important;
+      filter: none !important;
+      -webkit-filter: none !important;
     }
+
+    /* Matikan glow dari script.js */
+    .gallery-page-grid .gallery-card .vw-gallery-glow {
+      display: none !important;
+    }
+
     @media (max-width: 900px) {
       .gallery-page-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -92,7 +145,6 @@
         Kumpulan karya terbaik mahasiswa DKV ITB Ahmad Dahlan. Dari branding, UI/UX, ilustrasi, fotografi, hingga motion graphic.
       </p>
 
-      <!-- FILTER -->
       <div class="filter-bar">
         <button class="filter-btn active" data-filter="all">SEMUA</button>
         <button class="filter-btn" data-filter="batik">BATIK</button>
@@ -103,60 +155,43 @@
         <button class="filter-btn" data-filter="surealisme">LUKISAN SUREALISME</button>
       </div>
 
-      <!-- GALLERY -->
       <div class="gallery-page-grid">
-
-        <!-- BATIK -->
         <article class="gallery-card" data-cat="batik">
           <img src="aset/galeri1.jpg" alt="Batik">
           <span class="gallery-badge">BATIK</span>
         </article>
-
         <article class="gallery-card" data-cat="batik">
           <img src="aset/galeri3.jpg" alt="Batik">
           <span class="gallery-badge">BATIK</span>
         </article>
-
-        <!-- STANDEE -->
         <article class="gallery-card" data-cat="standee">
           <img src="aset/galeri2.jpeg" alt="Standee">
           <span class="gallery-badge">STANDEE</span>
         </article>
-
-        <!-- ABSTRAK GEOMETRIS -->
         <article class="gallery-card" data-cat="abstrak">
           <img src="aset/galeri4.jpeg" alt="Abstrak Geometris">
           <span class="gallery-badge">ABSTRAK GEOMETRIS</span>
         </article>
-
         <article class="gallery-card" data-cat="abstrak">
           <img src="aset/galeri6.jpeg" alt="Abstrak Geometris">
           <span class="gallery-badge">ABSTRAK GEOMETRIS</span>
         </article>
-
-        <!-- LINE ART -->
         <article class="gallery-card" data-cat="lineart">
           <img src="aset/galeri5.jpeg" alt="Line Art">
           <span class="gallery-badge">LINE ART</span>
         </article>
-
-        <!-- KALIGRAFI -->
         <article class="gallery-card" data-cat="kaligrafi">
           <img src="aset/galeri8.jpeg" alt="Kaligrafi">
           <span class="gallery-badge">KALIGRAFI</span>
         </article>
-
         <article class="gallery-card" data-cat="kaligrafi">
           <img src="aset/galeri9.jpeg" alt="Kaligrafi">
           <span class="gallery-badge">KALIGRAFI</span>
         </article>
-
-        <!-- LUKISAN SUREALISME -->
         <article class="gallery-card" data-cat="surealisme">
           <img src="aset/galeri7.jpeg" alt="Lukisan Surealisme">
           <span class="gallery-badge">LUKISAN SUREALISME</span>
         </article>
-
       </div>
     </div>
   </div>
@@ -165,7 +200,9 @@
     <div class="container relative">
       <h1 class="footer-title">DKV ITB-AD</h1>
       <div class="footer-grid mt-4">
-        <div><div class="footer-brand">DESAIN KOMUNIKASI<br>VISUAL<br>ITB AHMAD DAHLAN</div></div>
+        <div>
+          <div class="footer-brand">DESAIN KOMUNIKASI<br>VISUAL<br>ITB AHMAD DAHLAN</div>
+        </div>
         <div>
           <ul class="footer-links">
             <li><a href="faq.html">FAQ</a></li>
@@ -177,7 +214,6 @@
           <ul class="footer-links">
             <li><a href="kontak.html">KONTAK</a></li>
             <li><a href="galeri.html">GALERI KARYA</a></li>
-            
           </ul>
         </div>
         <div>
@@ -200,20 +236,13 @@
 
   <script src="script.js"></script>
   <script>
-    // Filter Gallery
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-
         const filter = btn.dataset.filter;
-
         document.querySelectorAll('.gallery-page-grid .gallery-card').forEach(card => {
-          if (filter === 'all' || card.dataset.cat === filter) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
+          card.style.display = (filter === 'all' || card.dataset.cat === filter) ? '' : 'none';
         });
       });
     });
