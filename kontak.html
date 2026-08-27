@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontak - Fakultas DKV ITB Ahmad Dahlan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .nav { mix-blend-mode: normal; background: var(--black); color: var(--white); padding: 12px 40px;}
+    .page-wrapper { padding-top: 130px; padding-bottom: 100px; min-height: 80vh; }
+
+    /* Custom UI untuk Kontak */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 50px; align-items: start; }
+    .contact-info-list { list-style: none; margin-top: 30px; }
+    .contact-info-list li { margin-bottom: 28px; }
+    .contact-info-label { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 1px; color: var(--orange); display: block; margin-bottom: 6px; }
+    .contact-info-value { font-size: 1.1rem; font-weight: 500; }
+
+    .contact-form { background: #111; border: 1px solid #333; border-radius: 24px; padding: 40px; }
+    .form-group { margin-bottom: 22px; }
+    .form-group label { display: block; font-family: var(--font-body); font-weight: 600; margin-bottom: 8px; color: var(--white); font-size: 0.95rem; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 14px 16px; border-radius: 12px; border: 1px solid #333;
+      background: #1a1a1a; color: var(--white); font-family: var(--font-body); font-size: 1rem;
+    }
+    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--orange); }
+    .form-group textarea { min-height: 130px; resize: vertical; }
+    .contact-form .btn-pill { width: 100%; justify-content: center; margin-top: 10px; }
+    .contact-form .btn-pill:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .form-status { margin-top: 14px; font-size: 0.95rem; font-weight: 500; text-align: center; min-height: 20px; }
+    .form-status.success { color: #4ADE80; }
+    .form-status.error { color: #F87171; }
+    /* honeypot: field jebakan bot, disembunyikan dari pengguna asli lewat CSS (bukan type="hidden") */
+    .hp-field { position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none; }
+
+    .map-embed { border-radius: 24px; overflow: hidden; margin-top: 60px; border: 1px solid #333; }
+    .map-embed iframe { width: 100%; height: 380px; border: 0; display: block; }
+
+    @media (max-width: 992px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <div class="logo">
+      <a href="index.html" class="r-mark" style="text-decoration: none; color: inherit;">D</a>
+    </div>
+    <button class="menu-btn">MENU +</button>
+  </nav>
+
+  <div class="page-wrapper dark-bg">
+    <div class="container">
+      <h2 class="section-title massive text-center">HUBUNGI <span class="outline-text">KAMI</span></h2>
+      <p class="body-text text-center mx-auto mt-2" style="color: var(--grey-text); max-width: 600px;">Punya pertanyaan seputar peminatan, biaya kuliah, atau jadwal kunjungan kampus? Tim admisi Fakultas DKV siap membantu.</p>
+
+      <div class="contact-grid">
+        <div>
+          <h3 class="pricing-title" style="font-family: var(--font-display); font-size: 2rem; color: var(--white); letter-spacing: 1px;">INFORMASI KAMPUS</h3>
+          <ul class="contact-info-list">
+            <li>
+              <span class="contact-info-label">ALAMAT</span>
+              <span class="contact-info-value">Gedung Fakultas DKV, Kampus ITB Ahmad Dahlan<br>Jl. Ir. H. Juanda No. 1, Ciputat, Tangerang Selatan, Banten</span>
+            </li>
+            <li>
+              <span class="contact-info-label">TELEPON / WHATSAPP</span>
+              <span class="contact-info-value">+62 21 7492 XXX</span>
+            </li>
+            <li>
+              <span class="contact-info-label">EMAIL</span>
+              <span class="contact-info-value">dkv@itbahmaddahlan.ac.id</span>
+            </li>
+            <li>
+              <span class="contact-info-label">JAM LAYANAN ADMISI</span>
+              <span class="contact-info-value">Senin - Jumat, 08.00 - 16.00 WIB</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-form">
+          <!--
+            FormSubmit.co: tidak butuh PHP/SMTP/App Password.
+            Ganti "akmalaja2009@gmail.com" di JS di bawah kalau email tujuan berubah.
+            PENTING: submit pertama akan mengirim email "Confirm your FormSubmit activation" ke
+            alamat tujuan — klik link aktivasi di email itu dulu sebelum form mulai berfungsi.
+          -->
+          <form id="formKontak">
+            <!-- Honeypot: field jebakan bot, disembunyikan lewat class .hp-field -->
+            <div class="hp-field">
+              <label for="website">Website</label>
+              <input type="text" id="website" name="_honey">
+            </div>
+
+            <div class="form-group">
+              <label for="nama">Nama Lengkap</label>
+              <input type="text" id="nama" name="nama" placeholder="Nama kamu" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="subjek">Subjek</label>
+              <input type="text" id="subjek" name="subjek" placeholder="Subjek pesan" required>
+            </div>
+            <div class="form-group">
+              <label for="pesan">Pesan</label>
+              <textarea id="pesan" name="pesan" placeholder="Ceritakan pertanyaanmu seputar Fakultas DKV..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-pill btn-orange" id="btnSubmit">
+              <span class="btn-text">KIRIM PESAN</span>
+              <span class="btn-icon">→</span>
+            </button>
+
+            <div id="notifikasi" class="form-status"></div>
+          </form>
+
+          <div class="map-embed">
+            <iframe src="https://www.google.com/maps?q=-6.2962405,106.7664715&z=17&output=embed" loading="lazy" title="Lokasi Kampus ITB Ahmad Dahlan"></iframe>
+          </div>
+          <p class="body-text" style="text-align:center; margin-top:14px;">
+            <a href="https://www.google.com/maps/place/Institut+Teknologi+Dan+Bisnis+Ahmad+Dahlan+Jakarta/@-6.2962405,106.7638912,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f02b8cb8d4a7:0x25bb6c7c4a37645b!8m2!3d-6.2962405!4d106.7664715!16s%2Fg%2F12xqbyz_y" target="_blank" rel="noopener" style="color: var(--orange); text-decoration: underline;">Buka di Google Maps →</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer mesh-bg">
+    <div class="container relative">
+      <h1 class="footer-title">DKV ITB-AD</h1>
+      <div class="footer-grid mt-4">
+        <div><div class="footer-brand">DESAIN KOMUNIKASI<br>VISUAL<br>ITB AHMAD DAHLAN</div></div>
+        <div>
+          <ul class="footer-links">
+            <li><a href="paket_layanan.html">PEMINATAN</a></li>
+            <li><a href="tentang_kami.html">TENTANG KAMI</a></li>
+            <li><a href="tim.html">DOSEN</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul class="footer-links">
+            <li><a href="kontak.html">KONTAK</a></li>
+            <li><a href="paket_layanan.html">Q&A</a></li>
+            <li><a href="galeri.html">GALERI KARYA</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-social-label">Follow us</div>
+          <ul class="footer-links">
+            <li><a href="https://instagram.com" target="_blank" rel="noopener">INSTAGRAM</a></li>
+            <li><a href="https://youtube.com" target="_blank" rel="noopener">YOUTUBE</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener">LINKEDIN</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="chat-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z"/></svg></div>
+  <script src="script.js"></script>
+  <script>
+    // ---- Ganti email tujuan di sini kalau perlu ----
+    const EMAIL_TUJUAN = 'akmalaja2009@gmail.com';
+    const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${EMAIL_TUJUAN}`;
+
+    document.getElementById('formKontak').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const form = this;
+      const btnSubmit = document.getElementById('btnSubmit');
+      const notifikasi = document.getElementById('notifikasi');
+      const btnText = btnSubmit.querySelector('.btn-text');
+
+      // Honeypot: kalau field jebakan terisi, anggap bot, jangan kirim tapi tetap "sukses" secara diam-diam
+      const honey = form.querySelector('[name="_honey"]').value;
+      if (honey) {
+        form.reset();
+        return;
+      }
+
+      btnSubmit.disabled = true;
+      btnText.textContent = 'MENGIRIM...';
+      notifikasi.textContent = '';
+      notifikasi.className = 'form-status';
+
+      try {
+        const formData = new FormData(form);
+        formData.append('_subject', '[Form Kontak DKV] ' + (formData.get('subjek') || 'Pesan baru dari website'));
+        formData.append('_captcha', 'false'); // set 'true' kalau ingin captcha bawaan FormSubmit
+        formData.append('_template', 'table');
+
+        const response = await fetch(FORMSUBMIT_URL, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          notifikasi.classList.add('success');
+          notifikasi.textContent = 'Pesan terkirim! Tim admisi akan segera menghubungi kamu.';
+          form.reset();
+        } else {
+          notifikasi.classList.add('error');
+          notifikasi.textContent = result.message || 'Maaf, pesan gagal terkirim. Coba lagi atau hubungi kami lewat WhatsApp.';
+        }
+      } catch (error) {
+        notifikasi.classList.add('error');
+        notifikasi.textContent = 'Terjadi kesalahan jaringan. Silakan coba lagi.';
+      } finally {
+        btnSubmit.disabled = false;
+        btnText.textContent = 'KIRIM PESAN';
+      }
+    });
+  </script>
+</body>
+</html>
