@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dosen - Fakultas DKV ITB Ahmad Dahlan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .nav { mix-blend-mode: normal; background: var(--black); color: var(--white); padding: 12px 40px;}
+    .page-wrapper { padding-top: 130px; padding-bottom: 100px; min-height: 80vh; }
+    
+    .team-grid { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 50px; 
+      margin-top: 60px; 
+      max-width: 900px; 
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .team-card { 
+      background: var(--white); 
+      border: 3px solid var(--black); 
+      border-radius: 24px; 
+      padding: 50px 30px; 
+      text-align: center; 
+      box-shadow: 15px 15px 0 var(--orange); 
+      transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    }
+    
+    .team-card:hover { 
+      transform: translate(-5px, -5px); 
+      box-shadow: 20px 20px 0 var(--black); 
+    }
+    
+    .team-img { 
+      width: 160px; 
+      height: 160px; 
+      border-radius: 50%; 
+      object-fit: cover; 
+      margin: 0 auto 24px; 
+      border: 4px solid var(--black); 
+      filter: grayscale(100%); 
+      transition: filter 0.3s ease, transform 0.3s ease; 
+    }
+    
+    .team-card:hover .team-img { 
+      filter: grayscale(0%);
+      transform: scale(1.05);
+    }
+    
+    .team-name { 
+      font-family: var(--font-display); 
+      font-size: 2.5rem; 
+      line-height: 1.1; 
+      margin-bottom: 5px; 
+      letter-spacing: 1px;
+    }
+    
+    .team-role { 
+      font-family: var(--font-body); 
+      font-weight: 700; 
+      color: var(--orange); 
+      font-size: 1.1rem; 
+      margin-bottom: 30px; 
+      display: block; 
+    }
+    
+    .social-links { 
+      display: flex; 
+      gap: 10px; 
+      justify-content: center; 
+    }
+    
+    .btn-custom {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 50px;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.85rem;
+      text-decoration: none;
+      flex: 1;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .btn-custom:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+    .btn-dark-custom {
+      background: var(--black);
+      color: var(--white);
+    }
+    .btn-orange-custom {
+      background: var(--orange);
+      color: var(--black);
+    }
+
+    @media (max-width: 768px) {
+      .team-grid { grid-template-columns: 1fr; gap: 40px; }
+      .team-card { padding: 40px 20px; box-shadow: 10px 10px 0 var(--orange); }
+      .team-card:hover { box-shadow: 15px 15px 0 var(--black); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <div class="logo">
+      <a href="index.html" class="r-mark" style="text-decoration: none; color: inherit;">D</a>
+    </div>
+    <button class="menu-btn">MENU +</button>
+  </nav>
+
+  <div class="page-wrapper mesh-bg">
+      <div class="container">
+        <h2 class="section-title massive text-center">DOSEN <span class="outline-text-dark" style="color:transparent;-webkit-text-stroke: 2px var(--black);">KREATIF</span></h2>
+        <p class="body-text text-center mx-auto mt-2">Dua dosen inspiratif di balik Program Studi DKV ITB Ahmad Dahlan.</p>
+        
+        <div class="team-grid">
+          <!-- Member 1 -->
+          <div class="team-card">
+            <img class="team-img" src="aset/dosen1.jpeg" alt="Foto Dosen Desain Grafis">
+            <h3 class="team-name">Dr. Raka Pratama, M.Ds.</h3>
+            <span class="team-role">DOSEN DESAIN GRAFIS</span>
+            
+            <div class="social-links">
+              <a href="#" target="_blank" class="btn-custom btn-dark-custom">LINKEDIN</a>
+              <a href="#" target="_blank" class="btn-custom btn-orange-custom">INSTAGRAM</a>
+            </div>
+          </div>
+
+          <!-- Member 2 -->
+          <div class="team-card">
+            <img class="team-img" src="aset/dosen2.jpeg" alt="Foto Dosen UI/UX & Multimedia">
+            <h3 class="team-name">Amelia Putri, M.Sn.</h3>
+            <span class="team-role">DOSEN UI/UX & MULTIMEDIA</span>
+            
+            <div class="social-links">
+              <a href="#" target="_blank" class="btn-custom btn-dark-custom">LINKEDIN</a>
+              <a href="#" target="_blank" class="btn-custom btn-orange-custom">INSTAGRAM</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer mesh-bg">
+    <div class="container relative">
+      <h1 class="footer-title">DKV ITB-AD</h1>
+      <div class="footer-grid mt-4">
+        <div><div class="footer-brand">DESAIN KOMUNIKASI<br>VISUAL<br>ITB AHMAD DAHLAN</div></div>
+        <div>
+          <ul class="footer-links">
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="tentang_kami.html">TENTANG KAMI</a></li>
+            <li><a href="tim.html">DOSEN</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul class="footer-links">
+            <li><a href="kontak.html">KONTAK</a></li>
+            <li><a href="galeri.html">GALERI KARYA</a></li>
+            
+          </ul>
+        </div>
+        <div>
+          <div class="footer-social-label">Follow us</div>
+          <ul class="footer-links">
+            <li><a href="https://instagram.com" target="_blank" rel="noopener">INSTAGRAM</a></li>
+            <li><a href="https://youtube.com" target="_blank" rel="noopener">YOUTUBE</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener">LINKEDIN</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="chat-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z"/></svg></div>
+  <script src="script.js"></script>
+</body>
+</html>
