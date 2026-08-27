@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - Fakultas DKV ITB Ahmad Dahlan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .nav { mix-blend-mode: normal; background: var(--black); color: var(--white); padding: 12px 40px;}
+    .page-wrapper { padding-top: 120px; padding-bottom: 100px; min-height: 80vh; }
+    
+    /* Custom UI untuk FAQ Accordion */
+    .faq-list { max-width: 820px; margin: 50px auto 0; text-align: left; display: flex; flex-direction: column; gap: 18px; }
+
+    .faq-item {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    .faq-item:hover { border-color: var(--orange); }
+    .faq-item[open] { border-color: var(--orange); }
+
+    .faq-question {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 26px 30px;
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+      letter-spacing: 0.5px;
+      color: var(--white);
+    }
+    .faq-question::-webkit-details-marker { display: none; }
+
+    .faq-icon {
+      flex-shrink: 0;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1.3rem;
+      line-height: 1;
+      transition: transform 0.3s ease;
+    }
+    .faq-item[open] .faq-icon { transform: rotate(45deg); }
+
+    .faq-answer {
+      padding: 0 30px 28px;
+      color: #CCC;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 640px;
+    }
+    .faq-answer a { color: var(--orange); font-weight: 600; }
+
+    .faq-cta { text-align: center; margin-top: 60px; }
+    .faq-cta p { color: var(--grey-text); margin-bottom: 20px; font-size: 1.05rem; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav">
+    <div class="logo">
+      <a href="index.html" class="r-mark" style="text-decoration: none; color: inherit;">D</a>
+    </div>
+    <button class="menu-btn">MENU +</button>
+  </nav>
+
+  <div class="page-wrapper dark-bg">
+      <div class="container text-center">
+        <h2 class="section-title massive">FAQ</h2>
+        <p class="body-text mx-auto mt-2" style="color: var(--grey-text);">Kumpulan pertanyaan yang paling sering ditanyakan calon mahasiswa seputar peminatan, kurikulum, dan biaya kuliah di Fakultas DKV.</p>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary class="faq-question">
+              <span>Apa saja peminatan yang tersedia?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              Fakultas DKV ITB Ahmad Dahlan menawarkan lima peminatan: Desain Grafis, UI/UX Design, Fotografi & Videografi, Ilustrasi, dan Motion Grafis. Setiap peminatan punya kurikulum yang fokus, tanpa mata kuliah yang tidak relevan dengan arah kariermu.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Berapa jumlah SKS tiap peminatan?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              Sebagai gambaran, peminatan Desain Grafis menempuh 24 SKS (Branding & Identitas Visual, Layout & Tipografi, Adobe Illustrator & Photoshop, hingga proyek portofolio akhir). Peminatan UI/UX Design menempuh 28 SKS (riset pengguna, wireframing & prototyping, Figma, hingga sertifikasi pendamping). Peminatan Fotografi & Videografi menempuh 26 SKS (teknik kamera & pencahayaan, editing, motion graphic dasar, dan praktik studio produksi).
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Kapan dan bagaimana cara memilih peminatan?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              Kamu tidak perlu langsung menentukan peminatan sejak hari pertama. Tim admisi kami siap membantu lewat sesi konsultasi gratis untuk menyesuaikan peminatan dengan minat dan tujuan kariermu di industri kreatif.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Apakah bisa pindah peminatan setelah masuk kuliah?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              Bisa. Selama masih di tahap awal perkuliahan dan mengikuti ketentuan akademik yang berlaku, mahasiswa dapat mengajukan perpindahan peminatan melalui bagian akademik fakultas.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Berapa biaya kuliah di Fakultas DKV?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              Rincian biaya kuliah dapat berbeda setiap periode penerimaan. Untuk informasi biaya terbaru dan simulasi pembayaran, silakan hubungi tim admisi kami melalui halaman <a href="kontak.html">Kontak</a>.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Bagaimana prospek kerja lulusan DKV ITB-AD?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              Lulusan kami siap terjun sebagai desainer grafis, UI/UX designer, fotografer/videografer profesional, hingga membuka studio desain sendiri. Kurikulum yang memadukan keterampilan desain dengan wawasan bisnis membekali mahasiswa untuk bersaing di industri kreatif nasional maupun internasional.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>Bagaimana cara mendaftar atau konsultasi jurusan?</span>
+              <span class="faq-icon">+</span>
+            </summary>
+            <div class="faq-answer">
+              Kamu bisa mengisi formulir di halaman <a href="kontak.html">Kontak</a>, atau menghubungi kami langsung lewat telepon/WhatsApp dan email yang tercantum di sana. Tim admisi kami aktif Senin–Jumat, 08.00–16.00 WIB.
+            </div>
+          </details>
+        </div>
+
+        <div class="faq-cta">
+          <p>Masih ada pertanyaan lain seputar peminatan atau biaya kuliah?</p>
+          <a href="kontak.html" class="btn btn-pill btn-orange">
+            <span class="btn-text">HUBUNGI TIM ADMISI</span>
+            <span class="btn-icon">→</span>
+          </a>
+        </div>
+      </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer mesh-bg">
+    <div class="container relative">
+      <h1 class="footer-title">DKV ITB-AD</h1>
+      <div class="footer-grid mt-4">
+        <div><div class="footer-brand">DESAIN KOMUNIKASI<br>VISUAL<br>ITB AHMAD DAHLAN</div></div>
+        <div>
+          <ul class="footer-links">
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="tentang_kami.html">TENTANG KAMI</a></li>
+            <li><a href="tim.html">DOSEN</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul class="footer-links">
+            <li><a href="kontak.html">KONTAK</a></li>
+            <li><a href="galeri.html">GALERI KARYA</a></li>
+            
+          </ul>
+        </div>
+        <div>
+          <div class="footer-social-label">Follow us</div>
+          <ul class="footer-links">
+            <li><a href="https://instagram.com" target="_blank" rel="noopener">INSTAGRAM</a></li>
+            <li><a href="https://youtube.com" target="_blank" rel="noopener">YOUTUBE</a></li>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener">LINKEDIN</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="chat-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z"/></svg></div>
+  <script src="script.js"></script>
+</body>
+</html>
