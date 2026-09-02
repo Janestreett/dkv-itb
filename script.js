@@ -378,6 +378,7 @@
         <a href="tentang_kami.html" class="vw-menu-link">TENTANG KAMI</a>
         <a href="galeri.html" class="vw-menu-link">GALERI</a>
         <a href="tim.html" class="vw-menu-link">DOSEN</a>
+        <a href="tugas_akhir.html" class="vw-menu-link">TUGAS AKHIR</a>
         <a href="kontak.html" class="vw-menu-link">KONTAK</a>
       </nav>
     `;
@@ -1050,4 +1051,3 @@
     init();
   }
 })();
-
