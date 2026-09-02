@@ -207,8 +207,10 @@ section { padding: 100px 0; }
   display: inline-block;
   width: clamp(60px, 8vw, 90px);
   height: clamp(60px, 8vw, 90px);
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23111" /><path d="M 35 40 Q 40 30 45 40 M 65 40 Q 60 30 55 40 M 35 60 Q 50 80 65 60" stroke="%23E4F059" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="50" cy="50" r="48" fill="none" stroke="%23E4F059" stroke-width="1" stroke-dasharray="4"/></svg>');
+  background-image: url('aset/dkv-icon-badge.jpg');
   background-size: cover;
+  background-position: center;
+  border-radius: 50%;
   vertical-align: text-bottom;
 }
 
@@ -218,8 +220,19 @@ section { padding: 100px 0; }
   right: 15%;
   animation: spin 10s linear infinite;
   z-index: 10;
+  width: 120px;
+  height: 120px;
 }
 .badge-footer { top: -60px; left: 15%; right: auto; }
+
+.badge-spin-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
 
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
@@ -295,7 +308,13 @@ section { padding: 100px 0; }
    GALLERY SECTION (Bento Grid)
    ========================================================================== */
 .gallery {
+  padding-top: 90px;
   padding-bottom: 100px;
+}
+
+/* Override pt-0 supaya area hitam lebih tinggi & judul tidak mepet */
+.gallery.dark-bg.pt-0 {
+  padding-top: 90px !important;
 }
 
 .gallery-grid {
@@ -465,5 +484,22 @@ section { padding: 100px 0; }
   section { padding: 60px 0; }
 }
 
+/* Pastikan foto about selalu terlihat */
+.about-image .octagon-mask,
+.about-image .octagon-mask img {
+  opacity: 1 !important;
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%) !important;
+  transform: none !important;
+  filter: none !important;
+  visibility: visible !important;
+}
+/* About: teks kiri, foto kanan, jarak lebih longgar */
+.about-section {
+  display: grid;
+  gap: 700px;              /* jarak antara teks dan foto */
+  align-items: center;
+}
+.about-content {
+  max-width: 520px;
+}
 
-      
