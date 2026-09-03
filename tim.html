@@ -13,14 +13,14 @@
     .page-wrapper { padding-top: 130px; padding-bottom: 100px; min-height: 80vh; }
     
     .team-grid { 
-      display: grid; 
-      grid-template-columns: 1fr 1fr; 
-      gap: 50px; 
-      margin-top: 60px; 
-      max-width: 900px; 
-      margin-left: auto;
-      margin-right: auto;
-    }
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 40px; 
+  margin-top: 60px; 
+  max-width: 1000px; 
+  margin-left: auto;
+  margin-right: auto;
+}
     
     .team-card { 
       background: var(--white); 
@@ -102,11 +102,11 @@
       color: var(--black);
     }
 
-    @media (max-width: 768px) {
-      .team-grid { grid-template-columns: 1fr; gap: 40px; }
-      .team-card { padding: 40px 20px; box-shadow: 10px 10px 0 var(--orange); }
-      .team-card:hover { box-shadow: 15px 15px 0 var(--black); }
-    }
+   @media (max-width: 768px) {
+  .team-grid { grid-template-columns: 1fr; gap: 40px; }
+  .team-card { padding: 40px 20px; box-shadow: 10px 10px 0 var(--orange); }
+  .team-card:hover { box-shadow: 15px 15px 0 var(--black); }
+}
   </style>
 </head>
 <body>
@@ -124,31 +124,51 @@
         <h2 class="section-title massive text-center">DOSEN <span class="outline-text-dark" style="color:transparent;-webkit-text-stroke: 2px var(--black);">KREATIF</span></h2>
         <p class="body-text text-center mx-auto mt-2">Dua dosen inspiratif di balik Program Studi DKV ITB Ahmad Dahlan.</p>
         
-        <div class="team-grid">
-          <!-- Member 1 -->
-          <div class="team-card">
-            <img class="team-img" src="aset/dosen1.jpeg" alt="Foto Dosen Desain Grafis">
-            <h3 class="team-name">Ahmad Faisal, S.Pd, M. M</h3>
-            <span class="team-role">DOSEN DESAIN GRAFIS</pan>
-            
-            <div class="social-links">
-              <a href="#" target="_blank" class="btn-custom btn-dark-custom">LINKEDIN</a>
-              <a href="#" target="_blank" class="btn-custom btn-orange-custom">INSTAGRAM</a>
-            </div>
-          </div>
+       <div class="team-grid">
+  <!-- Dosen 1 -->
+  <div class="team-card">
+    <img class="team-img" src="aset/dosen1.jpeg" alt="Foto Dosen Desain Grafis">
+    <h3 class="team-name">Ahmad Faisal, S.Pd, M. M</h3>
+    <span class="team-role">Kepala Program Studi Dkv</span>
+    <div class="social-links">
+      <a href="#" target="_blank" class="btn-custom btn-dark-custom">LINKEDIN</a>
+      <a href="#" target="_blank" class="btn-custom btn-orange-custom">INSTAGRAM</a>
+    </div>
+  </div>
 
-          <!-- Member 2 -->
-          <div class="team-card">
-            <img class="team-img" src="aset/dosen2.jpeg" alt="Foto Dosen UI/UX & Multimedia">
-            <h3 class="team-name">RIKI UMAR TONO, S. PD, M. SN-/h3>
-            <span class="team-role">DOSEN UI/UX & MULTIMEDIA</span>
-            
-            <div class="social-links">
-              <a href="#" target="_blank" class="btn-custom btn-dark-custom">LINKEDIN</a>
-              <a href="#" target="_blank" class="btn-custom btn-orange-custom">INSTAGRAM</a>
-            </div>
-          </div>
-        </div>
+  <!-- Dosen 2 -->
+  <div class="team-card">
+    <img class="team-img" src="aset/dosen2.jpeg" alt="Foto Dosen UI/UX & Multimedia">
+    <h3 class="team-name">RIKI UMAR TONO, S. PD, M. SN.</h3>
+    <span class="team-role">Sekertaris Program Studi Dkv</span>
+    <div class="social-links">
+      <a href="#" target="_blank" class="btn-custom btn-dark-custom">LINKEDIN</a>
+      <a href="#" target="_blank" class="btn-custom btn-orange-custom">INSTAGRAM</a>
+    </div>
+  </div>
+
+  <!-- Dosen 3 -->
+  <div class="team-card">
+    <img class="team-img" src="aset/dosen3.jpeg" alt="Foto Dosen Animasi">
+    <h3 class="team-name">Ricky Purnamahadi S.T.,M.M.</h3>
+    <span class="team-role">DOSEN ANIMASI</span>
+    <div class="social-links">
+      <a href="#" target="_blank" class="btn-custom btn-dark-custom">LINKEDIN</a>
+      <a href="#" target="_blank" class="btn-custom btn-orange-custom">INSTAGRAM</a>
+    </div>
+  </div>
+
+  <!-- Dosen 4 -->
+  <div class="team-card">
+    <img class="team-img" src="aset/dosen4.jpeg" alt="Foto Dosen Fotografi">
+    <h3 class="team-name">Citra Anandya, S.Hi, M.Ds</h3>
+    <span class="team-role">DOSEN FOTOGRAFI</span>
+    <div class="social-links">
+      <a href="#" target="_blank" class="btn-custom btn-dark-custom">LINKEDIN</a>
+      <a href="#" target="_blank" class="btn-custom btn-orange-custom">INSTAGRAM</a>
+    </div>
+  </div>
+</div>
       </div>
   </div>
 
@@ -163,14 +183,14 @@
             <li><a href="faq.html">FAQ</a></li>
             <li><a href="tentang_kami.html">TENTANG KAMI</a></li>
             <li><a href="tim.html">DOSEN</a></li>
-              <li><a href="tugas_akhir.html">TUGAS AKHIR</a></li>
+            <li><a href="tugas_akhir.html">TUGAS AKHIR</a></li>
           </ul>
         </div>
         <div>
           <ul class="footer-links">
             <li><a href="kontak.html">KONTAK</a></li>
             <li><a href="galeri.html">GALERI KARYA</a></li>
-            
+            <li><a href="paket_layanan.html">Q&amp;A</a></li>
           </ul>
         </div>
         <div>
@@ -186,6 +206,6 @@
   </footer>
 
   <div class="chat-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z"/></svg></div>
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>
