@@ -36,6 +36,24 @@
     /* honeypot: field jebakan bot, disembunyikan dari pengguna asli lewat CSS (bukan type="hidden") */
     .hp-field { position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none; }
 
+    /* Verifikasi email (OTP) */
+    .email-row { display: flex; gap: 10px; align-items: stretch; }
+    .email-row input { flex: 1; }
+    .btn-verify {
+      flex-shrink: 0; padding: 0 16px; border-radius: 12px; border: 1px solid var(--orange);
+      background: transparent; color: var(--orange); font-family: var(--font-body); font-weight: 600;
+      font-size: 0.85rem; cursor: pointer; white-space: nowrap;
+    }
+    .btn-verify:disabled { opacity: 0.5; cursor: not-allowed; border-color: #444; color: #777; }
+    .btn-verify.verified { background: #4ADE80; border-color: #4ADE80; color: #0a0a0a; cursor: default; }
+    .otp-group { display: none; margin-top: 10px; }
+    .otp-group.show { display: block; }
+    .otp-row { display: flex; gap: 10px; align-items: stretch; }
+    .otp-row input { flex: 1; letter-spacing: 4px; }
+    .otp-hint { font-size: 0.82rem; color: var(--grey-text, #999); margin-top: 6px; }
+    .otp-hint.error { color: #F87171; }
+    .otp-hint.success { color: #4ADE80; }
+
     .map-embed { border-radius: 24px; overflow: hidden; margin-top: 60px; border: 1px solid #333; }
     .map-embed iframe { width: 100%; height: 380px; border: 0; display: block; }
 
@@ -68,11 +86,9 @@
               <span class="contact-info-value">Gedung Fakultas DKV, Kampus ITB Ahmad Dahlan<br>Jl. Ir. H. Juanda No. 1, Ciputat, Tangerang Selatan, Banten</span>
             </li>
             <li>
-  <span class="contact-info-label">TELEPON / WHATSAPP</span>
-  <span class="contact-info-value">
-    <a href="https://wa.me/6285195916770" target="_blank" rel="noopener">+62 851-9591-6770</a>
-  </span>
-</li>
+              <span class="contact-info-label">TELEPON / WHATSAPP</span>
+              <span class="contact-info-value">+62 21 7492 XXX</span>
+            </li>
             <li>
               <span class="contact-info-label">EMAIL</span>
               <span class="contact-info-value">dkv@itbahmaddahlan.ac.id</span>
@@ -104,7 +120,18 @@
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+              <div class="email-row">
+                <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+                <button type="button" class="btn-verify" id="btnVerify" disabled>Kirim Kode</button>
+              </div>
+              <div class="otp-group" id="otpGroup">
+                <div class="otp-row">
+                  <input type="text" id="otpInput" inputmode="numeric" maxlength="6" placeholder="Masukkan 6 digit kode">
+                  <button type="button" class="btn-verify" id="btnCheckOtp">Cek Kode</button>
+                </div>
+                <div class="otp-hint" id="otpHint">Kode dikirim ke email di atas. Masukkan pesan hanya bisa dikirim setelah email terverifikasi.</div>
+              </div>
+              <input type="hidden" id="emailVerified" value="0">
             </div>
             <div class="form-group">
               <label for="subjek">Subjek</label>
@@ -123,11 +150,8 @@
           </form>
 
           <div class="map-embed">
-            <iframe src="https://www.google.com/maps?q=-6.2962405,106.7664715&z=17&output=embed" loading="lazy" title="Lokasi Kampus ITB Ahmad Dahlan"></iframe>
+            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=106.73%2C-6.32%2C106.77%2C-6.28&layer=mapnik" loading="lazy" title="Lokasi Kampus ITB Ahmad Dahlan"></iframe>
           </div>
-          <p class="body-text" style="text-align:center; margin-top:14px;">
-            <a href="https://www.google.com/maps/place/Institut+Teknologi+Dan+Bisnis+Ahmad+Dahlan+Jakarta/@-6.2962405,106.7638912,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f02b8cb8d4a7:0x25bb6c7c4a37645b!8m2!3d-6.2962405!4d106.7664715!16s%2Fg%2F12xqbyz_y" target="_blank" rel="noopener" style="color: var(--orange); text-decoration: underline;">Buka di Google Maps →</a>
-          </p>
         </div>
       </div>
     </div>
@@ -141,15 +165,16 @@
         <div><div class="footer-brand">DESAIN KOMUNIKASI<br>VISUAL<br>ITB AHMAD DAHLAN</div></div>
         <div>
           <ul class="footer-links">
-            <li><a href="paket_layanan.html">PEMINATAN</a></li>
+            <li><a href="faq.html">FAQ</a></li>
             <li><a href="tentang_kami.html">TENTANG KAMI</a></li>
             <li><a href="tim.html">DOSEN</a></li>
+            <li><a href="tugas_akhir.html">TUGAS AKHIR</a></li>
           </ul>
         </div>
         <div>
           <ul class="footer-links">
             <li><a href="kontak.html">KONTAK</a></li>
-          <li><a href="tugas_akhir.html">TUGAS AKHIR</a></li>
+            <li><a href="paket_layanan.html">Q&A</a></li>
             <li><a href="galeri.html">GALERI KARYA</a></li>
           </ul>
         </div>
