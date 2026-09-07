@@ -166,8 +166,124 @@
   </footer>
 
   <div class="chat-btn"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z"/></svg></div>
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
+  <!-- EmailJS: dipakai HANYA untuk mengirim kode verifikasi (OTP) ke email pengirim, -->
+  <!-- supaya orang tidak bisa mengirim pesan dengan mengatasnamakan email orang lain. -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
+    // ================== KONFIGURASI EMAILJS (verifikasi OTP) ==================
+    // 1. Daftar gratis di https://www.emailjs.com/
+    // 2. Buat "Email Service" (hubungkan ke Gmail/email admin) -> dapat SERVICE_ID
+    // 3. Buat "Email Template" berisi minimal variabel {{code}} dan {{to_email}} -> dapat TEMPLATE_ID
+    //    Contoh isi template:
+    //      To: {{to_email}}
+    //      Subject: Kode Verifikasi - Form Kontak DKV
+    //      Body: Kode verifikasi kamu adalah {{code}}. Berlaku 5 menit.
+    // 4. Ambil Public Key dari Account > General -> PUBLIC_KEY
+    const EMAILJS_PUBLIC_KEY  = 'GANTI_DENGAN_PUBLIC_KEY';
+    const EMAILJS_SERVICE_ID  = 'GANTI_DENGAN_SERVICE_ID';
+    const EMAILJS_TEMPLATE_ID = 'GANTI_DENGAN_TEMPLATE_ID';
+    const OTP_EXPIRY_MS = 5 * 60 * 1000; // 5 menit
+
+    if (window.emailjs) emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+    // ---- State verifikasi OTP (di memori, reset kalau halaman di-reload) ----
+    let otpState = { code: null, email: null, expiresAt: 0 };
+
+    const emailInput   = document.getElementById('email');
+    const btnVerify    = document.getElementById('btnVerify');
+    const otpGroup     = document.getElementById('otpGroup');
+    const otpInput     = document.getElementById('otpInput');
+    const btnCheckOtp  = document.getElementById('btnCheckOtp');
+    const otpHint      = document.getElementById('otpHint');
+    const emailVerifiedField = document.getElementById('emailVerified');
+
+    function resetVerification(message) {
+      emailVerifiedField.value = '0';
+      btnVerify.classList.remove('verified');
+      btnVerify.textContent = 'Kirim Kode';
+      btnVerify.disabled = !emailInput.checkValidity() || emailInput.value.trim() === '';
+      otpGroup.classList.remove('show');
+      otpInput.value = '';
+      otpHint.className = 'otp-hint';
+      otpHint.textContent = message || 'Kode dikirim ke email di atas. Pesan hanya bisa dikirim setelah email terverifikasi.';
+    }
+
+    emailInput.addEventListener('input', () => {
+      // Kalau email diubah setelah verifikasi/pengiriman kode, verifikasi harus diulang
+      if (otpState.email !== emailInput.value.trim()) {
+        resetVerification();
+      } else {
+        btnVerify.disabled = !emailInput.checkValidity() || emailInput.value.trim() === '';
+      }
+    });
+
+    btnVerify.addEventListener('click', async () => {
+      if (!emailInput.checkValidity() || emailInput.value.trim() === '') return;
+
+      if (EMAILJS_PUBLIC_KEY.startsWith('GANTI_')) {
+        otpHint.className = 'otp-hint error';
+        otpHint.textContent = 'Verifikasi belum dikonfigurasi (EmailJS belum diisi oleh admin).';
+        return;
+      }
+
+      const email = emailInput.value.trim();
+      const code = String(Math.floor(100000 + Math.random() * 900000)); // 6 digit
+
+      btnVerify.disabled = true;
+      const originalLabel = btnVerify.textContent;
+      btnVerify.textContent = 'Mengirim...';
+
+      try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          to_email: email,
+          code: code
+        });
+
+        otpState = { code, email, expiresAt: Date.now() + OTP_EXPIRY_MS };
+        otpGroup.classList.add('show');
+        otpHint.className = 'otp-hint';
+        otpHint.textContent = 'Kode terkirim. Cek inbox (atau folder spam) email tersebut.';
+        btnVerify.textContent = 'Kirim Ulang';
+        btnVerify.disabled = false;
+      } catch (err) {
+        otpHint.className = 'otp-hint error';
+        otpHint.textContent = 'Gagal mengirim kode. Coba lagi.';
+        btnVerify.textContent = originalLabel;
+        btnVerify.disabled = false;
+      }
+    });
+
+    btnCheckOtp.addEventListener('click', () => {
+      const entered = otpInput.value.trim();
+
+      if (!otpState.code || otpState.email !== emailInput.value.trim()) {
+        otpHint.className = 'otp-hint error';
+        otpHint.textContent = 'Kirim kode dulu untuk email ini.';
+        return;
+      }
+      if (Date.now() > otpState.expiresAt) {
+        otpHint.className = 'otp-hint error';
+        otpHint.textContent = 'Kode sudah kedaluwarsa. Klik "Kirim Ulang".';
+        return;
+      }
+      if (entered !== otpState.code) {
+        otpHint.className = 'otp-hint error';
+        otpHint.textContent = 'Kode salah. Coba periksa lagi.';
+        return;
+      }
+
+      emailVerifiedField.value = '1';
+      btnVerify.classList.add('verified');
+      btnVerify.textContent = 'Terverifikasi ✓';
+      btnVerify.disabled = true;
+      otpInput.disabled = true;
+      btnCheckOtp.disabled = true;
+      otpHint.className = 'otp-hint success';
+      otpHint.textContent = 'Email berhasil diverifikasi. Kamu sekarang bisa kirim pesan.';
+    });
+    // ================== AKHIR KONFIGURASI EMAILJS ==================
+
     // ---- Ganti email tujuan di sini kalau perlu ----
     const EMAIL_TUJUAN = 'akmalaja2009@gmail.com';
     const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${EMAIL_TUJUAN}`;
@@ -184,6 +300,13 @@
       const honey = form.querySelector('[name="_honey"]').value;
       if (honey) {
         form.reset();
+        return;
+      }
+
+      // Blokir kirim pesan kalau email belum terverifikasi (mencegah orang memakai email orang lain)
+      if (emailVerifiedField.value !== '1' || otpState.email !== emailInput.value.trim()) {
+        notifikasi.classList.add('error');
+        notifikasi.textContent = 'Verifikasi email kamu dulu sebelum mengirim pesan.';
         return;
       }
 
@@ -210,6 +333,10 @@
           notifikasi.classList.add('success');
           notifikasi.textContent = 'Pesan terkirim! Tim admisi akan segera menghubungi kamu.';
           form.reset();
+          otpState = { code: null, email: null, expiresAt: 0 };
+          otpInput.disabled = false;
+          btnCheckOtp.disabled = false;
+          resetVerification();
         } else {
           notifikasi.classList.add('error');
           notifikasi.textContent = result.message || 'Maaf, pesan gagal terkirim. Coba lagi atau hubungi kami lewat WhatsApp.';
