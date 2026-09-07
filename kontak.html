@@ -11,11 +11,13 @@
   <style>
     .nav { mix-blend-mode: normal; background: var(--black); color: var(--white); padding: 12px 40px;}
     .page-wrapper { padding-top: 130px; padding-bottom: 100px; min-height: 80vh; }
+
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 50px; align-items: start; }
     .contact-info-list { list-style: none; margin-top: 30px; }
     .contact-info-list li { margin-bottom: 28px; }
     .contact-info-label { font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 1px; color: var(--orange); display: block; margin-bottom: 6px; }
     .contact-info-value { font-size: 1.1rem; font-weight: 500; }
+
     .contact-form { background: #111; border: 1px solid #333; border-radius: 24px; padding: 40px; }
     .form-group { margin-bottom: 22px; }
     .form-group label { display: block; font-family: var(--font-body); font-weight: 600; margin-bottom: 8px; color: var(--white); font-size: 0.95rem; }
@@ -32,7 +34,7 @@
     .form-status.error { color: #F87171; }
     .hp-field { position: absolute; left: -9999px; top: -9999px; opacity: 0; pointer-events: none; }
 
-    /* OTP UI */
+    /* ===== OTP UI (WAJIB ADA) ===== */
     .email-row { display: flex; gap: 10px; align-items: stretch; }
     .email-row input { flex: 1; }
     .btn-verify {
@@ -52,12 +54,14 @@
 
     .map-embed { border-radius: 24px; overflow: hidden; margin-top: 60px; border: 1px solid #333; }
     .map-embed iframe { width: 100%; height: 380px; border: 0; display: block; }
+
     @media (max-width: 992px) {
       .contact-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
+
   <!-- NAVIGATION -->
   <nav class="nav">
     <div class="logo">
@@ -99,10 +103,6 @@
         </div>
 
         <div class="contact-form">
-          <!--
-            FormSubmit.co: tidak butuh PHP/SMTP.
-            Submit pertama akan mengirim email aktivasi ke alamat tujuan — klik link aktivasi dulu.
-          -->
           <form id="formKontak">
             <!-- Honeypot -->
             <div class="hp-field">
@@ -115,6 +115,7 @@
               <input type="text" id="nama" name="nama" placeholder="Nama kamu" required>
             </div>
 
+            <!-- EMAIL + OTP (ini yang sebelumnya hilang) -->
             <div class="form-group">
               <label for="email">Email</label>
               <div class="email-row">
@@ -149,11 +150,22 @@
             <div id="notifikasi" class="form-status"></div>
           </form>
 
+          <!-- GOOGLE MAPS (tetap seperti kode kamu) -->
           <div class="map-embed">
-            <iframe src="https://www.google.com/maps?q=-6.2962405,106.7664715&z=17&output=embed" loading="lazy" title="Lokasi Kampus ITB Ahmad Dahlan"></iframe>
+            <iframe
+              src="https://www.google.com/maps?q=-6.2962405,106.7664715&z=17&output=embed"
+              loading="lazy"
+              title="Lokasi Kampus ITB Ahmad Dahlan"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
           </div>
           <p class="body-text" style="text-align:center; margin-top:14px;">
-            <a href="https://www.google.com/maps/place/Institut+Teknologi+Dan+Bisnis+Ahmad+Dahlan+Jakarta/@-6.2962405,106.7638912,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f02b8cb8d4a7:0x25bb6c7c4a37645b!8m2!3d-6.2962405!4d106.7664715!16s%2Fg%2F12xqbyz_y" target="_blank" rel="noopener" style="color: var(--orange); text-decoration: underline;">Buka di Google Maps →</a>
+            <a href="https://www.google.com/maps/place/Institut+Teknologi+Dan+Bisnis+Ahmad+Dahlan+Jakarta/@-6.2962405,106.7638912,17z/data=!3m1!4b1!4m6!3m5!1s0x2e69f02b8cb8d4a7:0x25bb6c7c4a37645b!8m2!3d-6.2962405!4d106.7664715!16s%2Fg%2F12xqbyz_y"
+               target="_blank" rel="noopener"
+               style="color: var(--orange); text-decoration: underline;">
+              Buka di Google Maps →
+            </a>
           </p>
         </div>
       </div>
@@ -199,19 +211,11 @@
   <script src="script.js?v=2"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
-    // ================== GANTI 3 NILAI INI DARI DASHBOARD EMAILJS ==================
-    // 1. https://dashboard.emailjs.com
-    // 2. Email Services → Service ID (contoh: service_th7p9j9)
-    // 3. Email Templates → buat template:
-    //      To Email : {{to_email}}
-    //      Subject  : Kode Verifikasi: {{code}}
-    //      Content  : Kode verifikasi kamu adalah {{code}}. Berlaku 5 menit.
-    //    Lalu salin Template ID (biasanya template_xxxxxxx)
-    // 4. Account → API Keys → Public Key
+    // ========== GANTI 3 NILAI INI DARI DASHBOARD EMAILJS ==========
     const EMAILJS_PUBLIC_KEY  = 'c7MxkVU6twtMLYB8j';
     const EMAILJS_SERVICE_ID  = 'service_th7p9j9';
-    const EMAILJS_TEMPLATE_ID = 'template_XXXXXXX'; // GANTI: harus dari dashboard, biasanya diawali template_
-    // ==============================================================================
+    const EMAILJS_TEMPLATE_ID = 'template_XXXXXXX'; // WAJIB diganti Template ID asli
+    // ==============================================================
 
     const OTP_EXPIRY_MS = 5 * 60 * 1000;
     const EMAIL_TUJUAN = 'akmalfahreza209@gmail.com';
@@ -256,16 +260,16 @@
       if (!emailInput.checkValidity() || emailInput.value.trim() === '') return;
 
       if (!window.emailjs) {
+        otpGroup.classList.add('show');
         otpHint.className = 'otp-hint error';
         otpHint.textContent = 'EmailJS gagal dimuat. Cek koneksi internet.';
-        otpGroup.classList.add('show');
         return;
       }
 
-      if (EMAILJS_TEMPLATE_ID.includes('XXXXXXX') || EMAILJS_PUBLIC_KEY.startsWith('GANTI_')) {
-        otpHint.className = 'otp-hint error';
-        otpHint.textContent = 'Template ID / Public Key belum diisi. Buka dashboard EmailJS lalu ganti di kode.';
+      if (EMAILJS_TEMPLATE_ID.includes('XXXXXXX')) {
         otpGroup.classList.add('show');
+        otpHint.className = 'otp-hint error';
+        otpHint.textContent = 'Template ID belum diganti. Isi dari dashboard EmailJS.';
         return;
       }
 
@@ -279,11 +283,10 @@
       otpHint.textContent = 'Sedang mengirim kode...';
 
       try {
-        const result = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
           to_email: email,
           code: code
         });
-        console.log('EmailJS OK:', result);
 
         otpState = { code, email, expiresAt: Date.now() + OTP_EXPIRY_MS };
         otpHint.className = 'otp-hint success';
@@ -292,13 +295,10 @@
         btnVerify.disabled = false;
       } catch (err) {
         console.error('EmailJS error:', err);
-        let msg = 'Gagal mengirim kode. ';
-        if (err && err.text) msg += err.text;
-        else if (err && err.message) msg += err.message;
-        else msg += 'Cek Public Key, Service ID, Template ID (F12 Console).';
-
         otpHint.className = 'otp-hint error';
-        otpHint.textContent = msg;
+        otpHint.textContent = (err && (err.text || err.message))
+          ? ('Gagal: ' + (err.text || err.message))
+          : 'Gagal mengirim kode. Cek Public Key / Service ID / Template ID.';
         btnVerify.textContent = 'Kirim Kode';
         btnVerify.disabled = false;
       }
@@ -341,10 +341,7 @@
       const btnText = btnSubmit.querySelector('.btn-text');
 
       const honey = form.querySelector('[name="_honey"]').value;
-      if (honey) {
-        form.reset();
-        return;
-      }
+      if (honey) { form.reset(); return; }
 
       if (emailVerifiedField.value !== '1' || otpState.email !== emailInput.value.trim()) {
         notifikasi.className = 'form-status error';
@@ -378,7 +375,7 @@
           resetVerification();
         } else {
           notifikasi.className = 'form-status error';
-          notifikasi.textContent = result.message || 'Maaf, pesan gagal terkirim. Coba lagi atau hubungi lewat WhatsApp.';
+          notifikasi.textContent = result.message || 'Pesan gagal terkirim. Coba lagi atau hubungi lewat WhatsApp.';
         }
       } catch (error) {
         notifikasi.className = 'form-status error';
