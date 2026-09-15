@@ -327,7 +327,28 @@
     });
   }
 
-  /* ========================================================================
+/* ============================================================
+   HERO VIDEO - Pause saat keluar layar (opsional)
+   ============================================================ */
+(function () {
+  const video = document.querySelector('.hero-video');
+  if (!video) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+
+  observer.observe(video);
+})();
+   
+   
+   /* ========================================================================
      2) STICKY NAV — kaca buram premium
      ======================================================================== */
   function initStickyNav() {
