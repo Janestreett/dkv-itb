@@ -1,6 +1,4 @@
-==========================================================================
-   CSS VARIABLES & RESET
-   ========================================================================== */
+
 :root {
   --bg-light: #EBE8E3;
   --bg-dark: #222222;
@@ -448,3 +446,11 @@ section { padding: 100px 0; }
 }
 'use strict';
 /*
+/* CSS CONNECTION TEST */
+body {
+    background: red !important;
+}
+
+.hero {
+    background: blue !important;
+}
