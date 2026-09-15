@@ -443,13 +443,3 @@ section { padding: 100px 0; }
 .about-content {
   max-width: 520px;
 }
-'use strict';
-/*
-/* CSS CONNECTION TEST */
-body {
-    background: red !important;
-}
-
-.hero {
-    background: blue !important;
-}
