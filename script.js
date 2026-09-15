@@ -1050,40 +1050,55 @@
   } else {
     init();
   }
-   /* ============================================================
-   FILM PLAYER — HD + SUARA
+ /* ============================================================
+   FILM PLAYER — HD + SUARA (FIXED)
    ============================================================ */
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   const frame = document.querySelector('.film-frame');
   const video = document.getElementById('filmVideo');
   const btn = document.getElementById('filmPlayBtn');
   if (!frame || !video || !btn) return;
 
   video.muted = false;
-  video.volume = 1.0;
+  video.volume = 1;
+
+  function hideBtn() {
+    frame.classList.add('is-playing');
+  }
+
+  function showBtn() {
+    frame.classList.remove('is-playing');
+  }
 
   function playFilm() {
     video.muted = false;
-    video.volume = 1.0;
-    video.play().catch(function () {});
-    frame.classList.add('is-playing');
+    video.volume = 1;
+    var p = video.play();
+    if (p && typeof p.then === 'function') {
+      p.then(hideBtn).catch(function () {
+        showBtn();
+      });
+    } else {
+      hideBtn();
+    }
   }
 
   function pauseFilm() {
     video.pause();
-    frame.classList.remove('is-playing');
+    showBtn();
   }
 
-  function togglePlay() {
+  btn.addEventListener('click', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
     if (video.paused) playFilm();
     else pauseFilm();
-  }
+  });
 
-  btn.addEventListener('click', togglePlay);
-  video.addEventListener('click', togglePlay);
-
+  video.addEventListener('play', hideBtn);
+  video.addEventListener('pause', showBtn);
   video.addEventListener('ended', function () {
-    frame.classList.remove('is-playing');
+    showBtn();
     video.currentTime = 0;
   });
 
@@ -1091,8 +1106,7 @@
     link.addEventListener('click', function (e) {
       e.preventDefault();
       frame.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      setTimeout(playFilm, 400);
+      setTimeout(playFilm, 450);
     });
   });
-})();
-
+});
