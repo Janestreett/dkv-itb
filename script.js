@@ -1,7 +1,7 @@
 'use strict';
 
 /* ==========================================================================
-   VANGUARD WEB WORKS — MOTION ENGINE v3 (HOLY / ELEGANT EDITION)
+   DKV ITB AHMAD DAHLAN (HOLY / ELEGANT EDITION)
    Animasi murni Web Animations API + rAF.
    Fokus: setiap sentuhan terasa mahal, lembut, dan sakral.
    ========================================================================== */
@@ -327,28 +327,7 @@
     });
   }
 
-/* ============================================================
-   HERO VIDEO - Pause saat keluar layar (opsional)
-   ============================================================ */
-(function () {
-  const video = document.querySelector('.hero-video');
-  if (!video) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        video.play().catch(() => {});
-      } else {
-        video.pause();
-      }
-    });
-  }, { threshold: 0.25 });
-
-  observer.observe(video);
-})();
-   
-   
-   /* ========================================================================
+  /* ========================================================================
      2) STICKY NAV — kaca buram premium
      ======================================================================== */
   function initStickyNav() {
@@ -619,7 +598,7 @@
 
     // Text & simple elements
     const upGroups = [
-      '.about .body-text', '.about .btn-pill',
+      '.about .body-text', '.about .btn-pill',\n      '.video-profile .video-eyebrow', '.video-profile .video-profile-title', '.video-profile .video-profile-description',
       '.trainings .eyebrow-center',
       '.team-text .body-text', '.team-text .btn-pill',
       '.footer-grid > div',
@@ -663,6 +642,15 @@
         prepareWipe(el);
         io.observe(el);
       });
+    });
+
+
+    // Video profile reveal
+    document.querySelectorAll('.video-container.reveal-video').forEach((el, i) => {
+      el._vwIndex = i;
+      el.dataset.vwWipe = '1';
+      prepareWipe(el);
+      io.observe(el);
     });
 
     // Section titles as lines
@@ -1036,6 +1024,75 @@
     });
   }
 
+
+  /* ========================================================================
+     16) PROFILE VIDEO — play / pause + responsive controller
+     ======================================================================== */
+  function initProfileVideo() {
+    const video = document.getElementById('profileVideo');
+    const container = document.querySelector('.video-container');
+    const button = document.getElementById('videoPlayButton');
+
+    if (!video || !container || !button) return;
+
+    const playIcon = button.querySelector('.play-icon');
+    const playText = button.querySelector('.play-text');
+
+    function updateVideoUI() {
+      if (video.paused) {
+        container.classList.remove('is-playing');
+        if (playIcon) playIcon.textContent = '▶';
+        if (playText) playText.textContent = 'PLAY';
+        button.setAttribute('aria-label', 'Putar video');
+      } else {
+        container.classList.add('is-playing');
+        if (playIcon) playIcon.textContent = 'Ⅱ';
+        if (playText) playText.textContent = 'PAUSE';
+        button.setAttribute('aria-label', 'Jeda video');
+      }
+    }
+
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+
+      if (video.paused) {
+        video.play().catch(() => {
+          updateVideoUI();
+        });
+      } else {
+        video.pause();
+      }
+    });
+
+    container.addEventListener('click', (event) => {
+      if (event.target === button || button.contains(event.target)) return;
+
+      if (video.paused) {
+        video.play().catch(() => {
+          updateVideoUI();
+        });
+      } else {
+        video.pause();
+      }
+    });
+
+    video.addEventListener('play', updateVideoUI);
+    video.addEventListener('pause', updateVideoUI);
+    video.addEventListener('ended', updateVideoUI);
+
+    // Coba autoplay muted. Jika browser menolak autoplay,
+    // tombol PLAY tetap tersedia.
+    video.play()
+      .then(() => {
+        updateVideoUI();
+      })
+      .catch(() => {
+        updateVideoUI();
+      });
+
+    updateVideoUI();
+  }
+
   /* ========================================================================
      INIT SEMUA
      ======================================================================== */
@@ -1055,6 +1112,7 @@
     initAnimatedLinks();
     initSmoothScroll();
     initLogoHover();
+    initProfileVideo();
 
     if (!reduceMotion) {
       initMagneticButtons();
