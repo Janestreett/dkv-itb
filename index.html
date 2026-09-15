@@ -20,30 +20,66 @@
   </nav>
   
 
-  <!-- HERO SECTION -->
-  <section class="hero dark-bg">
-    <div class="container relative">
-      <!-- Spinning Badge -->
-      <div class="badge-spin">
-        <img src="aset/dkv-icon-badge.jpg" alt="Logo DKV ITB Ahmad Dahlan" class="badge-spin-img">
-      </div>
-
-      <h1 class="hero-title">
-    PROFIL PRODI<br>
-    DESAIN KOMUNIKASI<br>
-    <span class="outline-text">VISUAL</span>
-</h1>
-      <p class="hero-subtitle">
-        INSTITUT TEKNOLOGI &amp; BISNIS AHMAD DAHLAN<br>
-        Sochio Technopreneur University
-      </p>
-
-      <a href="faq.html" class="btn btn-pill btn-orange mt-4">
-        <span class="btn-text">LIHAT PEMINATAN</span>
-        <span class="btn-icon">→</span>
-      </a>
+  <!-- ===================== HERO ===================== -->
+<section class="hero dark-bg">
+  <div class="container relative">
+    <div class="badge-spin">
+      <img src="aset/dkv-icon-badge.jpg" alt="Logo DKV ITB Ahmad Dahlan" class="badge-spin-img">
     </div>
-  </section>
+
+    <h1 class="hero-title">
+      PROFIL PRODI<br>
+      DESAIN KOMUNIKASI<br>
+      <span class="outline-text">VISUAL</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      INSTITUT TEKNOLOGI &amp; BISNIS AHMAD DAHLAN<br>
+      Sochio Technopreneur University
+    </p>
+
+    <a href="faq.html" class="btn btn-pill btn-orange mt-4">
+      <span class="btn-text">LIHAT PEMINATAN</span>
+      <span class="btn-icon">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== 01 / INTRODUCTION + VIDEO HD ===================== -->
+<section class="intro-film light-bg">
+  <div class="container">
+
+    <div class="intro-film-header">
+      <span class="intro-film-label">01 / INTRODUCTION</span>
+      <a href="#film" class="intro-film-watch">WATCH FILM <span>→</span></a>
+    </div>
+
+    <div class="film-frame" id="film">
+      <video
+        class="film-video"
+        id="filmVideo"
+        playsinline
+        preload="metadata"
+        poster="aset/page1.png"
+      >
+        <source src="aset/video1.mp4" type="video/mp4">
+        Browser Anda tidak mendukung video.
+      </video>
+
+      <button class="film-play-btn" id="filmPlayBtn" type="button" aria-label="Putar video">
+        <span class="film-play-icon">▶</span>
+      </button>
+    </div>
+
+    <div class="intro-film-caption">
+      <h3 class="intro-film-title">DKV ITB AHMAD DAHLAN</h3>
+      <p class="intro-film-desc">
+        Creative education, technology &amp; entrepreneurship.
+      </p>
+    </div>
+
+  </div>
+</section>
 
   <!-- ABOUT SECTION -->
   <section class="about light-bg">
