@@ -63,7 +63,10 @@ a {
 }
 
 .hero.dark-bg {
-  background-image: none;
+  background-image: linear-gradient(180deg, rgba(8,8,8,0.55) 0%, rgba(8,8,8,0.78) 100%), url('aset/page1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   background-color: var(--bg-dark);
 }
 
