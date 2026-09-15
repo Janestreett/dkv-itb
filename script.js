@@ -1050,4 +1050,49 @@
   } else {
     init();
   }
+   /* ============================================================
+   FILM PLAYER — HD + SUARA
+   ============================================================ */
+(function () {
+  const frame = document.querySelector('.film-frame');
+  const video = document.getElementById('filmVideo');
+  const btn = document.getElementById('filmPlayBtn');
+  if (!frame || !video || !btn) return;
+
+  video.muted = false;
+  video.volume = 1.0;
+
+  function playFilm() {
+    video.muted = false;
+    video.volume = 1.0;
+    video.play().catch(function () {});
+    frame.classList.add('is-playing');
+  }
+
+  function pauseFilm() {
+    video.pause();
+    frame.classList.remove('is-playing');
+  }
+
+  function togglePlay() {
+    if (video.paused) playFilm();
+    else pauseFilm();
+  }
+
+  btn.addEventListener('click', togglePlay);
+  video.addEventListener('click', togglePlay);
+
+  video.addEventListener('ended', function () {
+    frame.classList.remove('is-playing');
+    video.currentTime = 0;
+  });
+
+  document.querySelectorAll('.intro-film-watch').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      e.preventDefault();
+      frame.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(playFilm, 400);
+    });
+  });
 })();
+
