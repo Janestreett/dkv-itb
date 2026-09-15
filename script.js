@@ -1015,16 +1015,14 @@
     });
   }
 
-  /* ========================================================================
+   /* ========================================================================
      INIT SEMUA
      ======================================================================== */
   function init() {
     injectRuntimeStyles();
-
     initPageVeil(() => {
       initPreloaderIntro();
     });
-
     initStickyNav();
     initMobileMenu();
     initClickRipple();
@@ -1034,7 +1032,6 @@
     initAnimatedLinks();
     initSmoothScroll();
     initLogoHover();
-
     if (!reduceMotion) {
       initMagneticButtons();
       initTiltCards();
@@ -1050,8 +1047,10 @@
   } else {
     init();
   }
- /* ============================================================
-   FILM PLAYER — HD + SUARA (FIXED)
+})();   // ← WAJIB ADA INI (penutup motion engine)
+
+/* ============================================================
+   FILM PLAYER — HD + SUARA
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function () {
   const frame = document.querySelector('.film-frame');
@@ -1065,35 +1064,22 @@ document.addEventListener('DOMContentLoaded', function () {
   function hideBtn() {
     frame.classList.add('is-playing');
   }
-
   function showBtn() {
     frame.classList.remove('is-playing');
   }
-
   function playFilm() {
     video.muted = false;
     video.volume = 1;
     var p = video.play();
     if (p && typeof p.then === 'function') {
-      p.then(hideBtn).catch(function () {
-        showBtn();
-      });
+      p.then(hideBtn).catch(function () { showBtn(); });
     } else {
       hideBtn();
     }
   }
 
-  function pauseFilm() {
-    video.pause();
-    showBtn();
-  }
-
-  btn.addEventListener('click', function (e) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (video.paused) playFilm();
-    else pauseFilm();
-  });
+  // Sembunyikan tombol play custom (pakai controls native saja)
+  btn.style.display = 'none';
 
   video.addEventListener('play', hideBtn);
   video.addEventListener('pause', showBtn);
