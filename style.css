@@ -678,3 +678,150 @@ section { padding: 100px 0; }
   filter: none !important;
   visibility: visible !important;
 }
+
+/* ============================================================
+   INTRODUCTION + FILM (HD + SUARA)
+   ============================================================ */
+.intro-film {
+  padding: 80px 0 100px;
+}
+
+.intro-film-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+  gap: 20px;
+}
+
+.intro-film-label {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--black);
+  opacity: 0.7;
+}
+
+.intro-film-watch {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: var(--black);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.3s ease;
+}
+
+.intro-film-watch:hover {
+  color: var(--orange);
+}
+
+.intro-film-watch span {
+  transition: transform 0.3s ease;
+}
+
+.intro-film-watch:hover span {
+  transform: translateX(4px);
+}
+
+.film-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #111;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+}
+
+.film-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #000;
+}
+
+.film-play-btn {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 84px;
+  height: 84px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--black);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, background 0.3s ease, opacity 0.3s ease;
+  z-index: 2;
+}
+
+.film-play-btn:hover {
+  transform: scale(1.08);
+  background: var(--orange);
+  color: var(--white);
+}
+
+.film-play-icon {
+  font-size: 1.7rem;
+  margin-left: 4px;
+  line-height: 1;
+}
+
+.film-frame.is-playing .film-play-btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-film-caption {
+  margin-top: 32px;
+  max-width: 520px;
+}
+
+.intro-film-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: 1px;
+  margin: 0 0 8px;
+  text-transform: uppercase;
+}
+
+.intro-film-desc {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.55);
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .intro-film {
+    padding: 50px 0 70px;
+  }
+
+  .intro-film-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .film-frame {
+    border-radius: 12px;
+  }
+
+  .film-play-btn {
+    width: 68px;
+    height: 68px;
+  }
+
+  .film-play-icon {
+    font-size: 1.35rem;
+  }
+}
