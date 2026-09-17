@@ -70,13 +70,13 @@
     .faq-answer li { margin-bottom: 6px; }
 
     /* ---- Unduh Dokumen ---- */
-    .doc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .doc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
     .doc-card { background: #111; border: 1px solid #333; border-radius: 20px; padding: 30px 24px; text-align: center; transition: border-color 0.3s ease, transform 0.3s ease; }
     .doc-card:hover { border-color: var(--orange); transform: translateY(-4px); }
     .doc-icon { width: 52px; height: 52px; margin: 0 auto 18px; }
     .doc-title { font-family: var(--font-display); font-size: 1.15rem; color: var(--white); letter-spacing: 0.3px; line-height: 1.2; margin-bottom: 6px; min-height: 42px; }
     .doc-meta { color: var(--grey-text); font-size: 0.8rem; margin-bottom: 20px; }
-    .doc-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 50px; background: transparent; border: 1.5px solid var(--orange); color: var(--orange); font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 1px; transition: all 0.25s ease; }
+    .doc-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border-radius: 50px; background: transparent; border: 1.5px solid var(--orange); color: var(--orange); font-family: var(--font-display); font-size: 0.85rem; letter-spacing: 1px; transition: all 0.25s ease; cursor: pointer; }
     .doc-btn:hover { background: var(--orange); color: var(--black); }
 
     /* ---- CTA ---- */
@@ -307,29 +307,36 @@
           <div class="doc-card">
             <svg class="doc-icon" viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6V2z" stroke="#FF5A00" stroke-width="1.5" stroke-linejoin="round"/><path d="M15 2v5h5" stroke="#FF5A00" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 13h6M9 16.5h6" stroke="#FF5A00" stroke-width="1.5" stroke-linecap="round"/></svg>
             <div class="doc-title">PEDOMAN TUGAS AKHIR</div>
-            <div class="doc-meta">PDF · 19 Halaman</div>
-            <a href="aset/dokumen/pedoman-tugas-akhir.pdf" class="doc-btn" target="_blank" rel="noopener">UNDUH ↓</a>
+            <div class="doc-meta">PDF</div>
+            <a href="aset/dokumen/pedoman-tugas-akhir.pdf" class="doc-btn" download>UNDUH ↓</a>
+          </div>
+
+          <div class="doc-card">
+            <svg class="doc-icon" viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6V2z" stroke="#FF5A00" stroke-width="1.5" stroke-linejoin="round"/><path d="M15 2v5h5" stroke="#FF5A00" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 13h6M9 16.5h6" stroke="#FF5A00" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <div class="doc-title">PEDOMAN NON SKRIPSI</div>
+            <div class="doc-meta">PDF</div>
+            <a href="aset/dokumen/pedoman-non-skripsi.pdf" class="doc-btn" download>UNDUH ↓</a>
           </div>
 
           <div class="doc-card">
             <svg class="doc-icon" viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6V2z" stroke="#FF5A00" stroke-width="1.5" stroke-linejoin="round"/><path d="M15 2v5h5" stroke="#FF5A00" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 13h6M9 16.5h6" stroke="#FF5A00" stroke-width="1.5" stroke-linecap="round"/></svg>
             <div class="doc-title">PANDUAN KKL DUDI</div>
-            <div class="doc-meta">PDF · 22 Halaman</div>
-            <a href="aset/dokumen/panduan-kkl-dudi.pdf" class="doc-btn" target="_blank" rel="noopener">UNDUH ↓</a>
+            <div class="doc-meta">PDF</div>
+            <a href="aset/dokumen/panduan-kkl-dudi.pdf" class="doc-btn" download>UNDUH ↓</a>
           </div>
 
           <div class="doc-card">
             <svg class="doc-icon" viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6V2z" stroke="#FF5A00" stroke-width="1.5" stroke-linejoin="round"/><path d="M15 2v5h5" stroke="#FF5A00" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 13h6M9 16.5h6" stroke="#FF5A00" stroke-width="1.5" stroke-linecap="round"/></svg>
             <div class="doc-title">PEDOMAN KKN</div>
-            <div class="doc-meta">PDF · 27 Halaman</div>
-            <a href="aset/dokumen/pedoman-kkn.pdf" class="doc-btn" target="_blank" rel="noopener">UNDUH ↓</a>
+            <div class="doc-meta">PDF</div>
+            <a href="aset/dokumen/pedoman-kkn.pdf" class="doc-btn" download>UNDUH ↓</a>
           </div>
 
           <div class="doc-card">
             <svg class="doc-icon" viewBox="0 0 24 24" fill="none"><path d="M6 2h9l5 5v15H6V2z" stroke="#FF5A00" stroke-width="1.5" stroke-linejoin="round"/><path d="M15 2v5h5" stroke="#FF5A00" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 13h6M9 16.5h6" stroke="#FF5A00" stroke-width="1.5" stroke-linecap="round"/></svg>
             <div class="doc-title">DOKUMEN KURIKULUM DKV</div>
-            <div class="doc-meta">PDF · 121 Halaman</div>
-            <a href="aset/dokumen/dokumen-kurikulum-dkv.pdf" class="doc-btn" target="_blank" rel="noopener">UNDUH ↓</a>
+            <div class="doc-meta">PDF</div>
+            <a href="aset/dokumen/dokumen-kurikulum-dkv.pdf" class="doc-btn" download>UNDUH ↓</a>
           </div>
         </div>
       </div>
